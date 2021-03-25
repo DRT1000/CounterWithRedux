@@ -1,0 +1,33 @@
+.container {
+    background-color: cornflowerblue;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input {
+    background-color: rgba(219, 105, 57, 0.85);
+    height: 50%;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-bottom: -100px;
+}
+
+.button {
+    background-color: greenyellow;
+    height: 40px;
+    width: 80px;
+    text-align: center;
+}
+.incorrect{
+  background-color: blue;
+    font-weight: bold;
+  color: red;
+}
+.countRed{
+    color: red;
+}
