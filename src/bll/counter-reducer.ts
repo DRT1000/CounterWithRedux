@@ -1,6 +1,3 @@
-import {Dispatch} from "redux";
-import {AppStateType} from "./store";
-
 const CHANGE_MODE = "CHANGE-MODE"
 const CHANGE_MIN_VALUE = "CHANGE-MIN-VALUE"
 const CHANGE_MAX_VALUE = "CHANGE-MAX-VALUE"
@@ -44,7 +41,6 @@ type ActionType =
     | IncrementType
     | ResetType
     | SetValueType
-    | SetValuesFromLocalStorageAC
 
 export type InitialStateType = typeof initialState
 export const counterReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -61,14 +57,6 @@ export const counterReducer = (state: InitialStateType = initialState, action: A
             return {...state, maxValue: action.value}
         case CHANGE_MIN_VALUE:
             return {...state, minValue: action.value}
-        case "SET-VALUE-FROM-LOCAL-STORAGE": {
-            return {
-                ...state,
-                count: action.count,
-                maxValue: action.maxValue,
-                minValue: action.minValue
-            }
-        }
         default:
             return state
     }
@@ -94,26 +82,5 @@ export const changeMinAC = (value: number): ChangeMinValue => {
 export const changeMaxAC = (value: number): ChangeMaxValue => {
     return {type: CHANGE_MAX_VALUE, value}
 }
-export const setValuesFromLocalStorageAC = (count: number, minValue: number, maxValue: number) => (
-    {type: "SET-VALUE-FROM-LOCAL-STORAGE", count, minValue, maxValue} as const
-)
 
-type SetValuesFromLocalStorageAC = ReturnType<typeof setValuesFromLocalStorageAC>
-
-
-export const setIncrValueTC = () => (dispatch: Dispatch, getState: () => AppStateType) => {
-    let currentCount = getState().counter.count
-    localStorage.setItem("counter value", JSON.stringify(currentCount + 1))
-    dispatch(incrementAC())
-}
-export const setMinValueTC = () => (dispatch: Dispatch, getState: () => AppStateType) => {
-    let currentMinValue = getState().counter.count
-    localStorage.setItem("counter value", JSON.stringify(currentMinValue+1 ))
-    dispatch(setValueAC())
-}
-export const setResetValueTC = () => (dispatch: Dispatch, getState: () => AppStateType) => {
-    let currentMinValue = getState().counter.count
-    localStorage.setItem("counter value", JSON.stringify(currentMinValue ))
-    dispatch(resetAC())
-}
 

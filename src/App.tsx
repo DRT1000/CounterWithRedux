@@ -5,9 +5,8 @@ import {AppStateType} from "./bll/store";
 import {
     changeMaxAC,
     changeMinAC,
-    changeModeAC,
-    InitialStateType,
-     setIncrValueTC, setResetValueTC,
+    changeModeAC, incrementAC,
+    InitialStateType, resetAC,
     setValueAC
 } from "./bll/counter-reducer";
 
@@ -32,11 +31,11 @@ function App() {
     }
 
     function increment() {
-        dispatch(setIncrValueTC())
+        dispatch(incrementAC())
     }
 
     function reset() {
-        dispatch(setResetValueTC())
+        dispatch(resetAC())
     }
 
     function setValue() {
